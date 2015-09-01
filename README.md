@@ -1,6 +1,10 @@
-## Synopsis
+# Harvard Course Assistant
 
 A website for interacting with Harvard course data.
+
+## Screenshot
+
+![Screenshot of course search for query "MCB 80"](screenshot.png?raw=true)
 
 ## Motivation
 

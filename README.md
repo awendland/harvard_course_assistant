@@ -1,18 +1,18 @@
 ## Synopsis
 
-This is a basic boilerplate repo for a simple client side web application. It uses modern HTML5 standards and implements LESS for stylesheet rendering.
+A website for interacting with Harvard course data.
 
 ## Motivation
 
-I created this project in order to streamline to process for getting quick demo projects up and running. My goal is to have this repo come with everything that I need to get a project running, but nothing more. I am not looking to include anything that would have to be removed in other projects, only common libraries will make there way in here.
+I created this project to play with course data that I was able to extract from the CS 50 courses site. I was hoping to create a better interface for the Q Guide, but I've put my dreams on hold to work on other, potentially more useful, things.
 
 ## Installation
 
 Simply:
 
-	git clone git://github.com/awendland/simple-web-boilerplate.git PROJECT_NAME
-	cd PROJECT_NAME
-	git remote rm origin
+	git clone https://github.com/awendland/harvard_course_assistant.git
+
+This project can be easily served at <http://localhost:8000`> with `python -m SimpleHTTPServer`.
 
 ## API Reference
 
@@ -20,13 +20,15 @@ This project currently includes:
 
  * Normalize 3.0.1
  * Less 2.0.0 (the JS client-side version)
- * Vanilla JS :), *modern web dev doesn't need jquery*
+ * Angular JS 1.4.4
 
 ## Contributors
 
 [Alex Wendland](https://github.com/awendland) maintains this repository. You can open an issue on this repo to discuss any changes.
 
 ## License
+
+Feel free to use this project, all that's requested is proper citation of this project.
 
 ```
 The MIT License (MIT)

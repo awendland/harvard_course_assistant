@@ -1,0 +1,98 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+/* Page Styles */
+.body-margin {
+	margin: 0 auto;
+	width: 90%;
+	max-width: 600px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.error {
+	color: #de3226;
+}
+
+.color--white {
+	border-color: rgba(255, 255, 255, 1);
+	color: rgba(255, 255, 255, 1);
+
+	*[disabled][disabled] & {
+		border-color: rgba(255, 255, 255, .5);
+		color: rgba(255, 255, 255, .5);
+	}
+}
+
+.courses-search {
+	padding: 1em 0;
+}
+
+.large-ribbon {
+    background-color: lighten(rgb(63,81,181), 10%);
+    height: 250px;
+    z-index: -1;
+    position: fixed;
+    width: 100%;
+}
+
+.search-box {
+    width: 100%;
+    min-height: 0;
+    padding: .25em 1em 0 1em;
+    margin-bottom: 1em;
+}
+
+.pagination-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	.result-count {
+		line-height: 36px;
+		color: rgba(255, 255, 255, .8)
+	}
+}
+
+.courses-table {
+    margin-top: 1em;
+    table-layout: fixed;
+    white-space: pre;
+
+    td {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+    }
+
+    .col-title {
+    	width: 60%;
+    }
+
+    .col-term {
+    	width: 20%;
+    }
+
+    .col-score {
+    	width: 20%;
+    }
+
+    .content--full {
+	    @media (max-width: 400px) {
+		    display: none;
+		}
+    }
+    .content--snippet {
+    	display: none;
+	    @media (max-width: 400px) {
+	    	display: inherit;
+		}
+	}
+}

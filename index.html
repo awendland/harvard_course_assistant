@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Q Guide Search</title>
+	<!-- Normalize.css -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+	<!-- Material Icon Font -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<!-- Material Design Lite -->
+	<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+	<!-- Custom LESS styling -->
+	<link rel="stylesheet/less" type="text/css" href="style.less" />
+	<!-- LESS JS  -->
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.0.0/less.min.js"></script>
+	<!-- Material Design Lite JS -->
+	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+	<!-- HTML5 Shiv -->
+	<!--[if lt IE 9]>
+	    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+	    <![endif]-->
+	</head>
+
+	<body id="home"
+		ng-app="QGuideRevamped"
+		class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+		<header class="mdl-layout__header">
+			<div class="mdl-layout__header-row">
+				<!-- Title -->
+				<span class="mdl-layout-title">Q Search</span>
+				<!-- Add spacer, to align navigation to the right -->
+				<div class="mdl-layout-spacer"></div>
+				<!-- Navigation. We hide it in small screens. -->
+				<nav class="mdl-navigation mdl-layout--large-screen-only">
+					<a class="mdl-navigation__link" href="https://my.harvard.edu">My.H</a>
+					<a class="mdl-navigation__link" href="https://courses.cs50.net">CS 50</a>
+				</nav>
+			</div>
+		</header>
+
+		<main class="mdl-layout__content">
+
+			<div class="large-ribbon"></div>
+
+			<div class="body-margin courses-search" ng-controller="CourseSearch">
+				<!-- Input field for filtering the course list -->
+				<div class="search-box mdl-card mdl-shadow--2dp">
+					<div class="full-width mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<input class="mdl-textfield__input" type="text" ng-model="query" />
+						<label class="mdl-textfield__label" for="sample1">Class Name</label>
+					</div>
+				</div>
+				<!-- Loading indicator -->
+				<div ng-if="!loaded && !error" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+				<!-- Error message -->
+				<div ng-if="error" class="error">{{error}}</div>
+				<div class="pagination-nav" ng-if="loaded && !error">
+					<button
+						class="mdl-button mdl-js-button mdl-js-ripple-effect"
+						ng-click="pageChange(-1)"
+						ng-disabled="pageStart == 0">
+						<i class="material-icons color--white">arrow_back</i>
+					</button>
+					<div class="result-count">{{filteredCourses.length}} courses</div>
+					<button
+						class="float--right mdl-button mdl-js-button mdl-js-ripple-effect"
+						ng-click="pageChange(1)"
+						ng-disabled="pageStart + perPage > filteredCourses.length">
+						<i class="material-icons color--white">arrow_forward</i>
+					</button>
+				</div>
+				<!-- Table of potential courses -->
+				<table ng-if="loaded && !error" class="courses-table full-width mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<!-- Table header -->
+					<thead><tr>
+						<th class="col-title mdl-data-table__cell--non-numeric">Title</th>
+						<th class="col-term">Term</th>
+						<th class="col-score">Q Score</th>
+					</tr></thead>
+					<!-- Courses that match the filter criteria -->
+					<tbody>
+						<!-- Show the class's info -->
+						<tr ng-repeat="course in paginatedCourses track by course.id">
+							<td class="mdl-data-table__cell--non-numeric" title="{{::course.title}} ({{::course.number}})">{{::course.title}} <em>({{::course.number}})</em></td>
+							<td><span class="content--full" title="{{::course.terms[0] || 'None'}}">{{::course.terms[0] || "None"}}</span><span class="content--snippet">{{::(course.terms[0] || "N").substring(0, 1)}}</td>
+							<td class="" title="{{::course.q || 'N/A'}}">{{::course.q || 'N/A'}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<footer class="mdl-mini-footer">
+				<div class="mdl-mini-footer__left-section">
+					<div class="mdl-logo">Problems?</div>
+					<ul class="mdl-mini-footer__link-list">
+						<li><a href="mailto:awendland@college.harvard.edu">awendland@college.harvard.edu</a></li>
+					</ul>
+				</div>
+			</footer>
+		</main>
+
+		<!-- JS resources -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
+		<script src="main.js"></script>
+	</body>
+	</html>
